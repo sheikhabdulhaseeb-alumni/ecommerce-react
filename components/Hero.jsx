@@ -12,7 +12,7 @@ const Hero = () => {
   useEffect(() => {
     fetch(`${process.env.API_URL}/category`, {
       headers: {
-      'token': `wYt/VdryGgbFfQtLTViDG8t0FZwIPFnzjPMqGhZBkkandjb1u8q4BuL6mf0oZYnF`
+      'token': process.env.API_TOKEN
       }
     })
     .then(res => res.json())
