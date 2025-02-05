@@ -16,7 +16,7 @@ const Hero = () => {
       }
     })
     .then(res => res.json())
-    .then(data => setCategories(data.data))
+    .then(data => data?.data ? setCategories(data.data): [])
   },[])
 
 

@@ -21,7 +21,7 @@ const Card = ({id,title, image, price}) => {
                   Remove from Cart
                 </button>
               ) : (
-                <Link to="/" onClick={() => addToCart({id, title, image, price,  quantity: 1})} className="option1"  >
+                <Link to="/" onClick={() => addToCart({product_id: id, title, image, price,  quantity: 1})} className="option1"  >
                 Buy Now
               </Link>
               )}

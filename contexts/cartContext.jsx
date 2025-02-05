@@ -7,6 +7,11 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
+  const [shippingDetails, setShippingDetails] = useState({
+    address: "",
+    email: "",
+    contact_no: ""
+  });
 
   const fetchProducts = () => {
     // fetch product from dummy json
@@ -16,7 +21,7 @@ export const CartProvider = ({ children }) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+      .then((data) => setProducts(data.data));
   };
 
   const getProductByCategory = (category) => {
@@ -30,6 +35,20 @@ export const CartProvider = ({ children }) => {
   };
 
   // A function to add items to the cart
+  // const addToCart = (item) => {
+  //   // update  item  quantity  in cartItems
+  //   const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+  //   if (existingItem) {
+  //     existingItem.quantity += item?.quantity || 1;
+  //     if (existingItem.quantity <= 0) {
+  //       removeFromCart(existingItem.id);
+  //     }
+  //   } else {
+  //     // add new item to cart
+  //     item.quantity = 1;
+  //     setCartItems([...cartItems, item]);
+  //   }
+  // };
   const addToCart = (item) => {
     // update  item  quantity  in cartItems
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -45,6 +64,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const handleDetailsChange = (e) => {
+    const { name, value } = e.target;
+    setShippingDetails({ ...shippingDetails, [name]: value });
+  }
+
   // A function to remove items from the cart
   const removeFromCart = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -54,11 +78,14 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        products,
         cartItems,
+        shippingDetails,
+        setShippingDetails,
         addToCart,
+        handleDetailsChange,
         removeFromCart,
         fetchProducts,
-        products,
         getProductByCategory,
         setCartItems,
       }}
