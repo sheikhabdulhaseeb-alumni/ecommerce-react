@@ -71,7 +71,7 @@ export const CartProvider = ({ children }) => {
 
   // A function to remove items from the cart
   const removeFromCart = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    setCartItems(cartItems.filter((item) => item.product_id !== id));
   };
 
   // Step 3: Provide cart data and actions to child components

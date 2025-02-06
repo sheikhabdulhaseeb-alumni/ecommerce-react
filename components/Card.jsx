@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { CartContext } from "../contexts/cartContext"
 
-const Card = ({id,title, image, price}) => {
+const Card = ({id,slug,title, image, price}) => {
   const {addToCart,  cartItems, removeFromCart } = useContext(CartContext)
   return (
     <>
@@ -10,10 +10,10 @@ const Card = ({id,title, image, price}) => {
         <div className="box">
           <div className="option_container">
             <div className="options">
-              <Link to={`/product/${id}`} className="option2">
+              <Link to={`/product/${slug}`} className="option2">
               {title}
               </Link>
-              {cartItems.find((item) => item.id === id) ? (
+              {cartItems.find((item) => item.product_id == id) ? (
                 <button
                   className="option1"
                   onClick={() => removeFromCart(id)}

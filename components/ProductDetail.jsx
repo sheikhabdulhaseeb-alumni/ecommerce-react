@@ -6,9 +6,14 @@ const ProductDetail = () => {
     let {id} = useParams();
     let [product, setProduct] = useState({})
     useEffect(() => {
-      fetch(`https://dummyjson.com/products/${id}`)
+      fetch(`${process.env.API_URL}/product/${id}`, {
+        headers: {
+          token: process.env.API_TOKEN,
+        },
+      }
+      )
       .then(res => res.json())
-      .then(data => setProduct({price: data.price, title: data.title, description: data.description, images: data.images}));
+      .then(data => setProduct({price: data.data.price, title: data.data.title, description: data.data.description, images:[ data.data.image_url]}));
     },[])
 
 
@@ -36,8 +41,7 @@ const ProductDetail = () => {
         </div> : <div className="col-md-6">Loading...</div>}
         <div className="col-md-6">
           <h3>{product.title}</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>{product.description}</p>
           <p className="mt-5">Price: RS {product.price}</p>
         </div>
       </div>

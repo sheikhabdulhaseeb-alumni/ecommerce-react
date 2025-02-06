@@ -30,6 +30,7 @@ const ProductSection = () => {
                 <Card
                   key={product?.id}
                   id={product.id}
+                  slug={product.slug}
                   title={product.title}
                   image={product.image_url}
                   price={product.price}

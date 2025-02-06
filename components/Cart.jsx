@@ -107,7 +107,7 @@ const Cart = () => {
                           <td>
                             <button
                               className="btn btn-danger"
-                              onClick={() => removeFromCart(item.id)}
+                              onClick={() => removeFromCart(item.product_id)}
                             >
                               Remove
                             </button>
@@ -188,7 +188,7 @@ const Cart = () => {
         </div>
       </div>
       <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
-        <Footer />
+        {/* <Footer /> */}
         <Cpy />
       </div>
     </>
