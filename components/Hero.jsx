@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { CartContext } from "../contexts/cartContext"
+import { UIContext } from "../contexts/UIContext"
 
 const Hero = () => {
   let {pathname } = useLocation()
   const [selectedDD, setSelectedDD] = useState('Categories')
   const {cartItems, getProductByCategory,  fetchProducts} = useContext(CartContext)
+  const {isMenuOpen, toggleMenu} = useContext(UIContext)
 
   // get product categories list
   const [categories, setCategories] = useState([])
@@ -34,15 +36,16 @@ return (
         <button
           className="navbar-toggler"
           type="button"
+          onClick={toggleMenu}
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen == true ? "true" : "false"}
           aria-label="Toggle navigation"
         >
           <span className=""> </span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className={ isMenuOpen ? "collapse navbar-collapse show" : "collapse navbar-collapse"} id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className={pathname === '/' ? "nav-item active" : "nav-item"}>
               <Link to="/" className="nav-link"> Home</Link>
