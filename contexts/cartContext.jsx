@@ -10,7 +10,8 @@ export const CartProvider = ({ children }) => {
   const [shippingDetails, setShippingDetails] = useState({
     address: "",
     email: "",
-    contact_no: ""
+    contact_no: "",
+    paymentMode: "online",
   });
 
   const fetchProducts = () => {

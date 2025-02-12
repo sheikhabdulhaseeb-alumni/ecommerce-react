@@ -32,7 +32,7 @@ const Cart = () => {
       address: shippingDetails.address,
     }
 
-    payload.items = payload.items.map(({ image, title, ...rest }) => rest);
+    payload.items = payload.items.map(({ image, ...rest }) => rest);
 
     // post api using form data
     fetch(`${process.env.API_URL}/order`, {
@@ -45,7 +45,8 @@ const Cart = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("Success:", result);
+        window.location.href = result.data.payment_url;
+        console.log("Success data:", result.data.payment_url);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -167,6 +168,59 @@ const Cart = () => {
                               placeholder="Enter your email"
                             />
                           </div>
+                          {/* <div className="form-group">
+                            <label htmlFor="paymentMode">Payment Mode</label>
+                            <select
+                              className="form-control"
+                              id="paymentMode"
+                              name="paymentMode"
+                              value={shippingDetails.paymentMode}
+                              onChange={handleDetailsChange}
+                            >
+                              <option value="online">Online</option>
+                              <option value="cod">Cash on Delivery</option>
+                            </select>
+                          </div>
+                          {shippingDetails.paymentMode === "online" && (
+                            <>
+                              <div className="form-group">
+                                <label htmlFor="cardNumber">Card Number</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="cardNumber"
+                                  name="cardNumber"
+                                  value={shippingDetails.cardNumber}
+                                  onChange={handleDetailsChange}
+                                  placeholder="Enter your card number"
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="expiry">Expiry Date</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="expiry"
+                                  name="expiry"
+                                  value={shippingDetails.expiry}
+                                  onChange={handleDetailsChange}
+                                  placeholder="MM/YY"
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label htmlFor="cvv">CVV</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="cvv"
+                                  name="cvv"
+                                  value={shippingDetails.cvv}
+                                  onChange={handleDetailsChange}
+                                  placeholder="Enter your CVV"
+                                />
+                              </div>
+                            </>
+                          )} */}
                         </form>
                       </td>
                     </tr>
