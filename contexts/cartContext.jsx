@@ -56,7 +56,7 @@ export const CartProvider = ({ children }) => {
     if (existingItem) {
       existingItem.quantity += item?.quantity || 1;
       if (existingItem.quantity <= 0) {
-        removeFromCart(existingItem.id);
+        removeFromCart(existingItem.product_id);
       }
     } else {
       // add new item to cart
