@@ -23,7 +23,7 @@ const ProductSection = () => {
             Our <span>products</span>
           </h2>
         </div>
-        <div className="row">
+        <div className="row d-flex justify-content-evenly">
           {products.length ? (
             products.map((product) => {
               return (

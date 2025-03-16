@@ -52,7 +52,7 @@ export const CartProvider = ({ children }) => {
   // };
   const addToCart = (item) => {
     // update  item  quantity  in cartItems
-    const existingItem = cartItems.find((cartItem) => cartItem.id === item.product_id);
+    const existingItem = cartItems.find((cartItem) => cartItem.product_id === item.product_id);
     if (existingItem) {
       existingItem.quantity += item?.quantity || 1;
       if (existingItem.quantity <= 0) {

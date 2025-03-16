@@ -18,7 +18,7 @@ const Cart = () => {
       setQuantity(quantity - 1);
       addToCart({ ...item, quantity: -1 });
     } else {
-      removeFromCart(item.id);
+      removeFromCart(item.product_id);
     }
   };
 
